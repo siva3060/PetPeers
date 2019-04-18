@@ -1,4 +1,7 @@
 package com.petpeers.petpeers.dao;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +18,15 @@ public class PetDao{
 		petRepository.save(addRequestPet);
 	}
 
+	public Optional<Pet> getPet(int petId){
+		return petRepository.findById(petId);
+	}
 	public void updatePet(int petId,int userId){
 		petRepository.updateOwner(petId,userId);
+	}
+
+	public List<Pet> getUserPetList(int userId){
+		return petRepository.findAllByUserId(userId);
 	}
 
 	

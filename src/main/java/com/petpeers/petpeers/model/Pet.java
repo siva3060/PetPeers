@@ -18,6 +18,7 @@ public class Pet{
 	private String petName;
 	private int petAge;
 	private String petPlace;
-	private int OwnerId;
+	//@Column(name = "userId")
+	private int userId;
 
 }

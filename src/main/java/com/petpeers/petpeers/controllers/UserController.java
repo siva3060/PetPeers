@@ -1,15 +1,22 @@
 package com.petpeers.petpeers.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.petpeers.petpeers.dto.LoginRequest;
 import com.petpeers.petpeers.dto.RegistrationRequest;
+import com.petpeers.petpeers.model.Pet;
+import com.petpeers.petpeers.service.PetService;
 import com.petpeers.petpeers.service.UserService;
 import com.petpeers.petpeers.validation.UserValidation;
 
@@ -23,6 +30,8 @@ public class UserController{
 	UserValidation userValidation;
 	@Autowired
 	UserService userService;
+	@Autowired
+	PetService petService;
 
 	@PostMapping("/UserRegistration")
 	public  ResponseEntity<String> UserRegistration(@RequestBody RegistrationRequest registrationRequest){
@@ -50,8 +59,12 @@ public class UserController{
 
 	}
 
-//	@GetMapping("/UserPets")
-//	public @ResponseEntity ResponseEntity<List<Pets>> ListOfPets(@PathVariable String userName){
-//	}
-//
+	@SuppressWarnings("unchecked")
+	@GetMapping("/UserPets")
+     public @ResponseBody ResponseEntity<List<Pet>> ListOfPets(@PathVariable int userId){
+
+	     return (ResponseEntity<List<Pet>>) petService.getPetsByUserId(userId);
+
+	}
+
 }

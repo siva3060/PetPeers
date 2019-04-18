@@ -1,6 +1,7 @@
 package com.petpeers.petpeers.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,12 @@ public class PetController{
 
 		//how to find duplicate pets
 		petService.addPet(petAddRequest);
+	}
+
+	@GetMapping("/showPet")
+	public void showPetDetails(@PathVariable int petId){
+
+		petService.getPetDetails(petId);
 	}
 
 	@RequestMapping("/buyPet")
