@@ -1,5 +1,4 @@
 package com.petpeers.petpeers.model;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,14 +9,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User{
-	
-	
-	//best stratedgy for generating id random unique id
+@Table(name = "pets")
+public class Pet{
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int userId;
-	private String userName;
-	private String userPassword;
+	private int petId;
+	private String petName;
+	private int petAge;
+	private String petPlace;
+	private int OwnerId;
+
 }
